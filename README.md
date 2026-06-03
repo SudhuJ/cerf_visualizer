@@ -4,8 +4,7 @@ A high-performance visualizer for CERF (Critical Element/Response Function) diag
 
 ## Prerequisites
 
-- **Python 3.10+** (Recommended)
-The following packages are required:
+- **Python 3.10+**. The following packages are required:
 ```
 pip install numpy pandas fastplotlib imgui-bundle pygfx pillow rendercanvas
 ```
@@ -17,9 +16,9 @@ pip install numpy pandas fastplotlib imgui-bundle pygfx pillow rendercanvas
 2. Navigate to the project directory:
    ```bash
    cd cerf_visualizer
+   python main.py
 
-
-## Usage  
+## Usage
 
 Note that the following CERF input is expected currently. Each line in the .txt file represents 1 line segment.
 
