@@ -27,7 +27,7 @@ class CerfVisualizer:
             "view_x_max": 1.0,
             "view_y_min": 0.0,
             "view_y_max": 1.0,
-            "highlight_ids": "",  # Added for vertex highlighting
+            "highlight_ids": "",
         }
 
         self._last_cam_state = None
@@ -97,7 +97,7 @@ class CerfVisualizer:
         self.highlight_graphics = []
         self._load_and_draw(initial_filepath)
         self._setup_gui()
-        self._setup_keybinds()  # Initialize keybinds
+        self._setup_keybinds()
         self.fig.add_animations(self._update_screen_locked_ui)
 
     def _setup_keybinds(self):
@@ -108,12 +108,12 @@ class CerfVisualizer:
 
             key = event.key.lower()
 
-            # --- Camera Reset (R) ---
+            # Camera Reset (R)
             if key == "r":
                 self.reset_viewport()
                 self.state["selected_info"] = "Viewport reset (Key: R)"
 
-            # --- Critical Point Filters (0, 1, 2, 3) ---
+            # Critical Point Filters (0, 1, 2, 3)
             elif key in ["0", "1", "2", "3"]:
                 cp_type = int(key)
                 state_key = f"show_type_{cp_type}"
@@ -288,7 +288,7 @@ class CerfVisualizer:
             "apply_range_filters": self.apply_range_filters,
             "apply_viewport": self.apply_viewport,
             "reset_viewport": self.reset_viewport,
-            "apply_highlights": self.apply_highlights,  # Added highlight callback
+            "apply_highlights": self.apply_highlights,
         }
 
         gui = CerfImGuiPanel(
@@ -334,7 +334,6 @@ class CerfVisualizer:
                 continue
 
             # The positions buffer is flattened to (N*3, 3) for fastplotlib.
-            # We reshape to (N, 3, 3) to apply the row-wise mask, then flatten back.
             pos_reshaped = self.positions_by_type[cp_type].reshape(-1, 3, 3)
             matched_pos = pos_reshaped[mask].reshape(-1, 3)
 
@@ -352,9 +351,9 @@ class CerfVisualizer:
         # Draw dedicated overlay graphic
         hg = self.fig[0, 0].add_line(
             data=all_highlight_pos,
-            colors=(1.0, 0.9, 0.0, 1.0),  # High-contrast Neon Yellow
+            colors=(1.0, 0.9, 0.0, 1.0),
             uniform_color=True,
-            thickness=4.0,  # Visibly thicker than standard lines
+            thickness=4.0,
             name="vertex_highlights",
         )
 
@@ -403,7 +402,6 @@ class CerfVisualizer:
         self.apply_viewport()
 
     def apply_type_filter(self, cp_type: int, show: bool):
-        # ZERO-COST FILTERING
         # Instantly drops/adds the geometry from the hardware render pipeline
         if hasattr(self, "cerf_graphics") and cp_type in self.cerf_graphics:
             self.cerf_graphics[cp_type].visible = show

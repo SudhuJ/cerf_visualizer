@@ -15,7 +15,7 @@ class CerfImGuiPanel(EdgeWindow):
 
         btn_width = imgui.get_content_region_avail().x
 
-        # --- 1. Import ---
+        # Import
         imgui.text("Data Import")
         imgui.set_next_item_width(-1)
         _, self.state["import_path"] = imgui.input_text(
@@ -29,7 +29,7 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.separator()
         imgui.spacing()
 
-        # --- 2. Export ---
+        # Export
         imgui.text("Data Export")
         imgui.set_next_item_width(-1)
         _, self.state["export_path"] = imgui.input_text(
@@ -46,7 +46,7 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.separator()
         imgui.spacing()
 
-        # --- 3. System Status ---
+        # System Status
         imgui.text("System Status:")
         imgui.text_colored((0.2, 0.6, 1.0, 1.0), self.state["selected_info"])
 
@@ -54,7 +54,7 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.separator()
         imgui.spacing()
 
-        # --- 4. View Options ---
+        # View Options
         imgui.text("View Options")
 
         changed_toggle, self.state["show_grid"] = imgui.checkbox(
@@ -81,7 +81,7 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.separator()
         imgui.spacing()
 
-        # --- 5. Vertex Highlighting ---
+        # Vertex Highlighting
         imgui.text("Vertex Highlighting")
         imgui.text_colored((0.7, 0.7, 0.7, 1.0), "Comma-separated IDs")
 
@@ -103,7 +103,7 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.separator()
         imgui.spacing()
 
-        # --- 6. Categorical Filters ---
+        # Categorical Filters
         imgui.text("Categorical Filters")
 
         filter_options = [
@@ -129,7 +129,7 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.separator()
         imgui.spacing()
 
-        # --- 7. Multi-Interval Spatial Filters ---
+        # Multi-Interval Spatial Filters
         imgui.text("Spatial Interval Filters")
 
         if "data_x_range" in self.state:
@@ -141,7 +141,7 @@ class CerfImGuiPanel(EdgeWindow):
 
             any_range_changed = False
 
-            # --- X INTERVALS ---
+            # X INTERVALS
             imgui.text_colored((0.7, 0.7, 0.7, 1.0), "X-Axis Intervals")
 
             intervals_to_remove_x = []
@@ -185,7 +185,7 @@ class CerfImGuiPanel(EdgeWindow):
 
             imgui.spacing()
 
-            # --- Y INTERVALS ---
+            # Y INTERVALS
             imgui.text_colored((0.7, 0.7, 0.7, 1.0), "Y-Axis Intervals")
 
             intervals_to_remove_y = []
@@ -242,7 +242,7 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.separator()
         imgui.spacing()
 
-        # --- 8. Viewport Camera Controls ---
+        # Viewport Camera Controls
         imgui.text("Viewport Axes Limits")
 
         imgui.text_colored((0.7, 0.7, 0.7, 1.0), "Time (X) Range")
