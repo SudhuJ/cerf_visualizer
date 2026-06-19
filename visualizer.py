@@ -70,6 +70,12 @@ class CerfVisualizer:
         self.mask_bottom.local.z = 5
         self.mask_top.local.z = 5
 
+        tick_mask_mat = gfx.MeshBasicMaterial(color="white", alpha_mode="solid")
+        self.mask_tick_x = gfx.Mesh(mask_geom, tick_mask_mat)
+        self.mask_tick_y = gfx.Mesh(mask_geom, tick_mask_mat)
+        self.mask_tick_x.local.z = 9
+        self.mask_tick_y.local.z = 9
+
         grid_material = gfx.GridMaterial(
             major_step=(self.state["grid_size"], self.state["grid_size"]),
             minor_step=(self.state["grid_size"] / 10, self.state["grid_size"] / 10),
@@ -87,6 +93,8 @@ class CerfVisualizer:
             self.mask_right,
             self.mask_bottom,
             self.mask_top,
+            self.mask_tick_x,
+            self.mask_tick_y,
             self.x_ruler,
             self.y_ruler,
             self.x_label,
@@ -198,6 +206,16 @@ class CerfVisualizer:
         self.mask_top.local.scale = (mask_w_center, WALL_SIZE, 1)
         self.mask_top.local.x = cam_x
         self.mask_top.local.y = axis_top_pos + (WALL_SIZE / 2)
+
+        x_tick_h = y_margin
+        self.mask_tick_x.local.scale = (mask_w_center, x_tick_h, 1)
+        self.mask_tick_x.local.x = cam_x
+        self.mask_tick_x.local.y = axis_y_pos - (x_tick_h / 2)
+
+        y_tick_w = x_margin
+        self.mask_tick_y.local.scale = (y_tick_w, axis_top_pos - axis_y_pos, 1)
+        self.mask_tick_y.local.x = axis_x_pos - (y_tick_w / 2)
+        self.mask_tick_y.local.y = cam_y
 
     def _load_and_draw(self, filepath):
         try:
