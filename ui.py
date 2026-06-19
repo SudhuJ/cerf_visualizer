@@ -107,10 +107,10 @@ class CerfImGuiPanel(EdgeWindow):
         imgui.text("Categorical Filters")
 
         filter_options = [
-            (0, "Minima (Blue)"),
-            (1, "Saddle (Green)"),
-            (2, "Maxima (Red)"),
-            (3, "Non-Critical (Grey)"),
+            (0, "Minima"),
+            (1, "Saddle-1"),
+            (2, "Saddle-2"),
+            (3, "Maxima"),
         ]
 
         for cp_type, label in filter_options:

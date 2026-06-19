@@ -9,7 +9,7 @@ from ui import CerfImGuiPanel
 
 
 class CerfVisualizer:
-    TYPE_NAMES = {0: "Minima", 1: "Saddle", 2: "Maxima", 3: "Unknown"}
+    TYPE_NAMES = {0: "Minima", 1: "Saddle-1", 2: "Saddle-2", 3: "Maxima"}
 
     def __init__(self, initial_filepath):
         self.parser = CerfDataParser()
@@ -351,9 +351,9 @@ class CerfVisualizer:
         # Draw dedicated overlay graphic
         hg = self.fig[0, 0].add_line(
             data=all_highlight_pos,
-            colors=(1.0, 0.9, 0.0, 1.0),
+            colors=(1.0, 0.9, 0.0, 0.7),
             uniform_color=True,
-            thickness=4.0,
+            thickness=8.0,
             name="vertex_highlights",
         )
 
